@@ -18,19 +18,6 @@ The main goal is to build strong robotics foundations while developing a ROS2-ba
 
 ---
 
-## Current Learning Status
-
-### Completed
-- Linux Unhatched (Cisco)
-- MATLAB Onramp
-- Simulink Onramp
-
-### Currently Learning
-- Git/GitHub
-- ROS2 Fundamentals
-- Turtlesim
-- ROS2 architecture
-
 ### Planned Topics
 - Differential drive kinematics
 - Gazebo simulation
@@ -107,3 +94,4 @@ The goal is not just writing code, but understanding how robotics systems intera
 - N20 Encoder Motors
 - MPU6050
 - VL53L0X
+- Other necessary stuff
