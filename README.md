@@ -1,20 +1,23 @@
 # ROS2 Learning Journey
 
-A documentation repository for my robotics and ROS2 learning journey.
+A documentation repository for my robotics, ROS2, and embedded systems learning journey.
+
+---
 
 ## Overview
 
-This repository documents my journey learning:
+This repository documents my progress while learning:
+
 - ROS2
 - Linux
-- Robotics
-- Embedded Systems
-- Gazebo
-- RViz
-- Differential Drive Robotics
+- Robotics fundamentals
+- Embedded systems
+- Gazebo simulation
+- RViz visualization
+- Differential drive robotics
 - ESP32 integration
 
-The main goal is to build strong robotics foundations while developing a ROS2-based differential drive mobile robot.
+The primary goal is to build strong robotics foundations while developing a ROS2-based differential drive mobile robot from scratch.
 
 ---
 
@@ -23,75 +26,34 @@ The main goal is to build strong robotics foundations while developing a ROS2-ba
 - Gazebo simulation
 - RViz visualization
 - ESP32 communication
-- Odometry
+- Encoder odometry
 - Sensor integration
+- TF and coordinate frames
+- SLAM fundamentals
 
 ---
 
 ## Main Project
 
-### ROS2 Differential Drive Mobile Robot
+# ROS2 Differential Drive Mobile Robot
 
-#### Planned Features
-- ESP32-based control
-- Differential drive
+### Planned Features
+- ESP32-based low-level control
+- Differential drive system
 - Encoder odometry
-- MPU6050 IMU
-- VL53L0X TOF sensors
-- ROS2 communication
-- Wireless control
+- MPU6050 IMU integration
+- VL53L0X ToF sensors
+- ROS2 communication pipeline
+- Wireless teleoperation
+- Modular software architecture
 
 ---
 
 ## Repository Structure
 
 ```text
-notes/          -> learning notes
-screenshots/    -> simulation and testing screenshots
-experiments/    -> ROS2 experiments
-hardware/       -> robot hardware documentation
-resources/      -> useful references and links
-```
-
----
-
-## Learning Philosophy
-
-This repository focuses on:
-- systems understanding
-- practical implementation
-- debugging and troubleshooting
-- robotics fundamentals
-- hands-on experimentation
-
-The goal is not just writing code, but understanding how robotics systems interact.
-
----
-
-## Future Goals
-
-- Build complete ROS2 mobile robot
-- Implement encoder odometry
-- Learn Gazebo simulation workflow
-- Understand TF and robot frames
-- Explore SLAM foundations
-
----
-
-## Tech Stack
-
-### Software
-- ROS2
-- Ubuntu / WSL2
-- Python
-- Git/GitHub
-- Gazebo
-- RViz
-
-### Hardware
-- ESP32
-- DRV8833
-- N20 Encoder Motors
-- MPU6050
-- VL53L0X
-- Other necessary stuff
+notes/          -> Learning notes and concepts
+screenshots/    -> Simulations, debugging, and testing screenshots
+experiments/    -> ROS2 practice projects and experiments
+hardware/       -> Robot hardware documentation
+resources/      -> Useful references, tutorials, and links
