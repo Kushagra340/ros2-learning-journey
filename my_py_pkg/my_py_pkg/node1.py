@@ -2,11 +2,20 @@
 import rclpy
 from rclpy.node import Node
 
+class Node1(Node):
+    def __init__(self):
+        super().__init__("node1")
+        self.counter_ = 0
+        self.get_logger().info("Hello World!!")
+        self.create_timer(1.0, self.timer_callback)
+
+    def timer_callback(self):
+        self.get_logger().info("Hello" + str(self.counter_))
+        self.counter_ += 1
 
 def main(args=None):
     rclpy.init(args=args)
-    node=Node("node1")
-    node.get_logger().info("Hello World!!")
+    node=Node1()
     rclpy.spin(node)
     rclpy.shutdown()
 
