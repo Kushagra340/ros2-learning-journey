@@ -24,7 +24,7 @@ setup(
     },
     entry_points={
         'console_scripts': [
-            "node1 = my_py_pkg.node1:main"
+            "my_py_pkg = my_py_pkg.my_py_pkg:main"
         ],
     },
 )

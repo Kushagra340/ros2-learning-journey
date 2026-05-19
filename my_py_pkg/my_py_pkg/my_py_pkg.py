@@ -4,7 +4,7 @@ from rclpy.node import Node
 
 class Node1(Node):
     def __init__(self):
-        super().__init__("node1")
+        super().__init__("my_py_pkg")
         self.counter_ = 0
         self.get_logger().info("Hello World!!")
         self.create_timer(1.0, self.timer_callback)
