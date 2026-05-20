@@ -24,7 +24,9 @@ setup(
     },
     entry_points={
         'console_scripts': [
-            "my_py_pkg = my_py_pkg.my_py_pkg:main"
+            "my_py_pkg = my_py_pkg.my_py_pkg:main",
+            "robot_news_station = my_py_pkg.robot_news_station:main",
+            "smartphone = my_py_pkg.smartphone:main",
         ],
     },
 )

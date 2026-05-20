@@ -220,3 +220,11 @@ __marimo__/
 # ROS2 Workspace Specifics
 install/
 log/
+*.o
+*.cmake
+
+# VS Code C++ database cache
+.vscode/*.db
+.vscode/*.db-shm
+.vscode/*.db-wal
+.vscode/ipch/
