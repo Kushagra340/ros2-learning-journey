@@ -1,0 +1,45 @@
+#include "rclcpp/rclcpp.hpp"
+
+class MyCustomNode : public rclcpp::Node // MODIFY NAME
+{
+public:
+    MyCustomNode() : Node("node_name") // MODIFY NAME
+    {
+    }
+
+private:
+};
+
+int main(int argc, char **argv)
+{
+    rclcpp::init(argc, argv);
+    auto node = std::make_shared<MyCustomNode>(); // MODIFY NAME
+    rclcpp::spin(node);
+    rclcpp::shutdown();
+    return 0;
+}
+// Then Open my_cpp_pkg/CMakeLists.txt and add these lines right above ament_package() to link your code:
+
+//add_executable(cpp_node src/my_cpp_node.cpp)
+//ament_target_dependencies(cpp_node rclcpp)
+//install(TARGETS
+//  cpp_node
+//  DESTINATION lib/${PROJECT_NAME}
+//))
+
+//Note: Remember to replace "MyCustomNode" and "node_name" with the actual names you want to use for your node. Also, ensure that the file name (e.g., my_cpp_node.cpp) matches the name of your source file.
+// After making these changes, you can build your package using colcon build and run your node using ros2 run my_cpp_pkg cpp_node (replace my_cpp_pkg and cpp_node with the actual names of your package and executable).
+
+// 1. SAVE ALL FILES IN VS CODE (Ctrl + S)
+
+// 2. Go to workspace
+//cd ~/ros2_ws
+
+// 3. Build the package
+//colcon build --packages-select my_cpp_pkg # MODIFY NAME
+
+// 4. Source the terminal
+//source ~/.bashrc
+
+// 5. Run the node
+//ros2 run my_cpp_pkg cpp_node # MODIFY NAME

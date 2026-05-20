@@ -2,9 +2,11 @@
 import rclpy
 from rclpy.node import Node
 
+
 class MyCustomNode(Node): # MODIFY NAME
     def __init__(self):
         super().__init__("node_name") # MODIFY NAME
+
 
 def main(args=None):
     rclpy.init(args=args)
@@ -12,5 +14,26 @@ def main(args=None):
     rclpy.spin(node)
     rclpy.shutdown()
 
+
 if __name__ == "__main__":
     main()
+
+# Then open setup.py and update the following stuff:
+# entry_points={
+#     'console_scripts': [
+#         'node_name = py_node_template:main', # MODIFY NAME
+#     ],
+# },
+# 1. SAVE ALL FILES IN VS CODE (Ctrl + S)
+
+## 2. Go to workspace
+#cd ~/ros2_ws
+
+## 3. Build the package
+#colcon build --packages-select my_py_pkg # MODIFY NAME
+
+## 4. Source the terminal
+#source ~/.bashrc
+
+## 5. Run the node
+#ros2 run my_py_pkg py_node # MODIFY NAME
