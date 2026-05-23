@@ -7,23 +7,24 @@ from functools import partial
 from turtlesim.msg import Pose
 from geometry_msgs.msg import Twist
 from my_robot_interfaces.msg import TurtleArray
-# Import the custom service!
 from my_robot_interfaces.srv import CatchTurtle
 
 class TurtleControllerNode(Node):
     def __init__(self):
         super().__init__("turtle_controller")
         
+        # Step 6: Declare the parameter from the PDF
+        self.declare_parameter("catch_closest_turtle_first", True)
+        
         self.pose_ = None
+        self.turtle_to_catch_ = None
+
         self.pose_subscriber_ = self.create_subscription(
             Pose, "turtle1/pose", self.pose_callback, 10)
         
         self.cmd_vel_publisher_ = self.create_publisher(
             Twist, "turtle1/cmd_vel", 10)
             
-        # We need to remember the specific turtle we are currently hunting
-        self.turtle_to_catch_ = None
-        
         self.alive_turtles_subscriber_ = self.create_subscription(
             TurtleArray, "alive_turtles", self.alive_turtles_callback, 10)
         
@@ -35,8 +36,27 @@ class TurtleControllerNode(Node):
 
     def alive_turtles_callback(self, msg):
         if len(msg.turtles) > 0:
-            # We assign the whole turtle object, not just coordinates
-            self.turtle_to_catch_ = msg.turtles[0]
+            # Read the parameter to decide our strategy
+            catch_closest = self.get_parameter("catch_closest_turtle_first").value
+            
+            if catch_closest and self.pose_ is not None:
+                # Step 5: The Closest Turtle Algorithm
+                closest_turtle = None
+                closest_distance = float('inf')
+
+                for turtle in msg.turtles:
+                    dist_x = turtle.x - self.pose_.x
+                    dist_y = turtle.y - self.pose_.y
+                    distance = math.sqrt(dist_x**2 + dist_y**2)
+
+                    if distance < closest_distance:
+                        closest_distance = distance
+                        closest_turtle = turtle
+
+                self.turtle_to_catch_ = closest_turtle
+            else:
+                # Fallback to the old strategy
+                self.turtle_to_catch_ = msg.turtles[0]
         else:
             self.turtle_to_catch_ = None
 
@@ -51,7 +71,6 @@ class TurtleControllerNode(Node):
         msg = Twist()
 
         if distance > 0.5:
-            # Still driving
             msg.linear.x = 2.0 * distance
             goal_theta = math.atan2(dist_y, dist_x)
             diff = goal_theta - self.pose_.theta
@@ -63,14 +82,10 @@ class TurtleControllerNode(Node):
                 
             msg.angular.z = 6.0 * diff
         else:
-            # We reached the target! 
             msg.linear.x = 0.0
             msg.angular.z = 0.0
             
-            # Call the service to kill the turtle we just caught
             self.call_catch_turtle_service(self.turtle_to_catch_.name)
-            
-            # Immediately clear our target so we don't spam the kill command
             self.turtle_to_catch_ = None 
 
         self.cmd_vel_publisher_.publish(msg)
