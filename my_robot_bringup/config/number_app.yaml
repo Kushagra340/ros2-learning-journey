@@ -1,0 +1,4 @@
+/my_number_publisher_node:
+  ros__parameters:
+    number: 10
+    timer_period: 0.5

@@ -9,7 +9,6 @@ public:
         server_ = this->create_service<example_interfaces::srv::AddTwoInts>(
             "add_two_ints",
             std::bind(&AddTwoIntsServerNode::callback_add_two_ints, this, std::placeholders::_1, std::placeholders::_2)
-            RCLCPP_INFO(this->get_logger(), "Service 'add_two_ints' is ready.")
         );
     }
 
